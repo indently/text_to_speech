@@ -5,6 +5,8 @@ import pyttsx3
 # No module named win32, or No module named win32api, you will need to additionally install pypiwin32.
 
 class TextToSpeech:
+    engine: pyttsx3.Engine
+
     def __init__(self, voice, rate: int, volume: float):
         self.engine = pyttsx3.init()
         if voice:
@@ -21,7 +23,6 @@ class TextToSpeech:
             self.engine.save_to_file(text, file_name)
 
         self.engine.runAndWait()
-
 
     def list_available_voices(self):
         voices: list = [self.engine.getProperty('voices')]
