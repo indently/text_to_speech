@@ -22,6 +22,7 @@ class TextToSpeech:
             # On linux make sure that 'espeak' and 'ffmpeg' are installed
             self.engine.save_to_file(text, file_name)
             self.engine.runAndWait()
+
             print('Saved!')
 
     def list_available_voices(self):
@@ -34,6 +35,5 @@ class TextToSpeech:
 if __name__ == '__main__':
     tts = TextToSpeech('com.apple.speech.synthesis.voice.daniel', 200, 1.0)
     # tts.list_available_voices()
-    tts.text_to_speech('In today\'s video I will be showing you how you can create a text to speech script.',
-                       save=False)
-    tts.text_to_speech('We will also be covering how we can save the output as an mp3 file.', save=False)
+    tts.text_to_speech('This will be converted to speech.', save=True, file_name='output.mp3')
+
