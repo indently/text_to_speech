@@ -15,15 +15,13 @@ class TextToSpeech:
     def text_to_speech(self, text: str, save: bool = False, file_name='output.mp3'):
         self.engine.say(text)
         print('I\'m speaking...')
-        self.engine.runAndWait()
-        self.engine.stop()
 
         if save:
             # On linux make sure that 'espeak' and 'ffmpeg' are installed
             self.engine.save_to_file(text, file_name)
-            self.engine.runAndWait()
 
-            print('Saved!')
+        self.engine.runAndWait()
+
 
     def list_available_voices(self):
         voices: list = [self.engine.getProperty('voices')]
@@ -36,4 +34,3 @@ if __name__ == '__main__':
     tts = TextToSpeech('com.apple.speech.synthesis.voice.daniel', 200, 1.0)
     # tts.list_available_voices()
     tts.text_to_speech('This will be converted to speech.', save=True, file_name='output.mp3')
-
